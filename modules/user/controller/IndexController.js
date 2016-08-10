@@ -36,5 +36,18 @@ IndexController.prototype.getUser = function (req, res, next) {
     res.send(user);
 };
 
+IndexController.prototype.getUserFromId = function (req, res, next) {
+
+    var id = req.params.id;
+    var user = 'No record found';
+    try {
+        user = indexModel.getUserById(id);
+    } catch (e) {
+
+    }
+
+    res.send(user);
+};
+
 
 module.exports = IndexController;

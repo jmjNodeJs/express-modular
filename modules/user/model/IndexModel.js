@@ -3,13 +3,13 @@
  */
 
 /**
- * Import DB connection
+ * Import DB connection and other config
  * */
 
 var USERS = ["First", 'JMJ', 'Sumesh', 'Anu', 'Rekha'];
 
 var IndexModel = function () {
-    this.table_name = "tbl_user";
+    // this.table_name = "tbl_user";
     this.users = USERS;
 };
 

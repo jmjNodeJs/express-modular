@@ -13,7 +13,7 @@ var server = app.listen(PORT, function () {
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/', function (req, res) {
-    res.send('hello world');
+    res.send('Welcome to Express Modular Architecture');
 });
 
 /** Middle ware */
@@ -24,5 +24,5 @@ app.get('/', function (req, res) {
  });
  */
 
-/** Import Routes here */
-app.use('/users', require('./modules/user/routes'));
+/** Importing routes for each Modules */
+app.use('/users', require('./modules/user/route'));
