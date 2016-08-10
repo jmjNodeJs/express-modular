@@ -1,0 +1,6 @@
+*.zip
+*.psd
+*~
+node_modules
+temp/
+.idea
