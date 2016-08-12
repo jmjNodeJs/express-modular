@@ -1,7 +1,7 @@
 {
   "name": "express-modular",
   "version": "1.0.0",
-  "description": "Just start with nodeJs express framework and modular design",
+  "description": " Simple way of extending MODULAR structure in Express NodeJS. Here also included middleWare",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"

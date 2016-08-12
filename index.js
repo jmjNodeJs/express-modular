@@ -8,6 +8,7 @@ var PORT = 9000;
 var express = require('express');
 var path = require("path");
 var bodyParser = require("body-parser");
+var LoggerMiddleware = require("./middleware/LoggerMiddleware");
 
 
 /************ BINDING TO SERVER *************************
@@ -46,9 +47,17 @@ app.use(function (req, res, next) {
 });
 
 
+/********* MIDDLEWARE  ***********************************
+ /********************************************************/
 
-
-/********* GET request **********************************
+// simple example for middleware
+app.use(function (req, res, next) {
+    console.log('Requesting method is ', req.method);
+    next();
+});
+// MiddleWare using logging
+app.use(LoggerMiddleware);
+/********* GET request ***********************************
  /********************************************************/
 // simple GET request
 // eg:  http://localhost:9000
@@ -97,6 +106,5 @@ app.post("/post/response", function (req, res) {
 });
 
 
-
 /** Importing routes for each Modules */
-app.use('/users', require('./modules/user/route'));
+app.use('/users', require('./module/user/route'));
