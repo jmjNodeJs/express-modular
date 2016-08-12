@@ -1,7 +1,3 @@
-/******  EXTERNAL CONFIG  *******************************
- ********************************************************/
-var PORT = 9000;
-
 /****** IMPORT ALL MODULES THAT WE REQUIRED  ***********
  ********************************************************/
 
@@ -11,12 +7,33 @@ var bodyParser = require("body-parser");
 var LoggerMiddleware = require("./middleware/LoggerMiddleware");
 
 
+/******  EXTERNAL CONFIG  *******************************
+ ********************************************************/
+require('dotenv').config();// Load default .env from root directory
+
+/** Switching to appropriate environment*/
+switch (process.env.environment) {
+    case 'development':
+        require('dotenv').config({path: __dirname + '/config/development.env'});
+        break;
+    case 'qa':
+        require('dotenv').config({path: __dirname + '/config/qa.env'});
+        break;
+    case 'production':
+        require('dotenv').config({path: __dirname + '/config/production.env'});
+        break;
+
+}
+
 /************ BINDING TO SERVER *************************
  /********************************************************/
+var PORT = process.env.PORT;
 var app = express();
 var server = app.listen(PORT, function () {
     var host = server.address().address;
     var port = server.address().port;
+    // console.log(__dirname);
+    console.log(" The project currently working in (" + process.env.environment + ") environment");
     console.log("Example app listening at http://%s:%s", host, port)
 
 })
