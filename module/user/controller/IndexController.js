@@ -18,7 +18,7 @@ var IndexController = function () {
 };
 
 
-IndexController.prototype.newOp = function () {
+IndexController.prototype.newOtp = function () {
     console.log(this.otp);
 };
 

@@ -4,6 +4,7 @@
 var express = require('express');
 var path = require("path");
 var bodyParser = require("body-parser");
+var expressValidator = require('express-validator');
 var LoggerMiddleware = require("./middleware/LoggerMiddleware");
 
 
@@ -36,9 +37,10 @@ var server = app.listen(PORT, function () {
     console.log(" The project currently working in (" + process.env.environment + ") environment");
     console.log("Example app listening at http://%s:%s", host, port)
 
-})
+});
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(expressValidator([])); // this line must be immediately after express.bodyParser()!
 
 /*********** SETTING FOR RESPONSE HEADER ****************
  /********************************************************/
@@ -101,7 +103,7 @@ app.get('/response', function (req, res) {
 // simple post at ROOT
 // eg : http://localhost:9000/post
 app.post('/post', function (req, res) {
-    res.send(['Your POSt request working fine...!']);
+    res.send(['Your POST request working fine...!']);
 });
 // Return the content what you send in post
 // The POST data/ Form content should be formatted to -> application/x-www-form-urlencoded
@@ -124,4 +126,5 @@ app.post("/post/response", function (req, res) {
 
 
 /** Importing routes for each Modules */
+app.use('/login', require('./module/login/route'));
 app.use('/users', require('./module/user/route'));
